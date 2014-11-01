@@ -1,0 +1,30 @@
+{
+  "name": "sugar-glob",
+  "version": "0.0.1",
+  "description": "Sugar for using glob to find files ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/will123195/sugar-glob.git"
+  },
+  "keywords": [
+    "glob",
+    "find",
+    "files",
+    "walk",
+    "scan"
+  ],
+  "author": "will123195",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/will123195/sugar-glob/issues"
+  },
+  "homepage": "https://github.com/will123195/sugar-glob",
+  "dependencies": {
+    "caller-path": "^0.1.0",
+    "glob": "^4.0.6"
+  }
+}

@@ -1,10 +1,10 @@
 sugar-glob
 ==========
 
-Find files using glob with a little added sugar
+Find files using [glob](https://github.com/isaacs/node-glob) with a little added sugar
 
 
-![](https://raw.github.com/will123195/sugar-glob/glob.gif)
+![](https://raw.githubusercontent.com/will123195/sugar-glob/master/glob.gif)
 
 
 ## Install
