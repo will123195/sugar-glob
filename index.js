@@ -46,5 +46,6 @@ scan.prototype.file = function(pattern, cb) {
       })
     })
   })
+  return self
 }
 
