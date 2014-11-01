@@ -17,8 +17,8 @@ npm install sugar-glob
 ## Usage
 
 ```js
-var glob = require('sugar-glob')
-var scanner = glob({
+var scan = require('sugar-glob')
+var scanner = scan({
   root: './my-folder' // relative to this file or absolute path
 })
 scanner.file('**/*.html', function(file) {
