@@ -4,6 +4,9 @@ sugar-glob
 Find files using glob with a little added sugar
 
 
+![](https://raw.github.com/will123195/sugar-glob/glob.gif)
+
+
 ## Install
 
 ```
