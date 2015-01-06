@@ -12,6 +12,8 @@ var scan = module.exports = function scan(opts) {
     return new scan(opts)
   }
 
+  this.doneFn = function() {}
+
   if (opts.root.substring(0, 1) === path.sep) {
     // absolute path specified
     this.root = opts.root
@@ -45,7 +47,11 @@ scan.prototype.file = function(pattern, cb) {
         filename: filename
       })
     })
+    self.doneFn()
   })
   return self
 }
 
+scan.prototype.done = function(cb) {
+  this.doneFn = cb
+}
