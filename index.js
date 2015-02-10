@@ -44,7 +44,7 @@ scan.prototype.file = function(pattern, cb) {
       var filtered = []
       var unfiltered = []
       files.forEach(function(file) {
-        if (file.indexOf('$') > -1) {
+        if (file.indexOf(self.wildcard) > -1) {
           return filtered.push(file)
         }
         unfiltered.push(file)
