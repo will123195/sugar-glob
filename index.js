@@ -30,6 +30,8 @@ var scan = module.exports = function scan(opts) {
     ].join(path.sep))
   }
 
+  this.wildcard = opts.wildcard
+
 }
 
 scan.prototype.file = function(pattern, cb) {
@@ -37,6 +39,19 @@ scan.prototype.file = function(pattern, cb) {
   glob(pattern, {
     cwd: self.root
   }, function(err, files) {
+    // filenames containing wildcard char go to the bottom
+    if (self.wildcard) {
+      var filtered = []
+      var unfiltered = []
+      files.forEach(function(file) {
+        if (file.indexOf('$') > -1) {
+          return filtered.push(file)
+        }
+        unfiltered.push(file)
+      })
+      files = unfiltered.concat(filtered)
+    }
+
     files.forEach(function(file) {
       var filename = self.root + path.sep + file
       cb({
