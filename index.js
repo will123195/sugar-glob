@@ -1,6 +1,7 @@
 var glob = require('glob')
 var path = require('path')
 var callerPath = require('caller-path')
+var clone = require('clone')
 
 var scan = module.exports = function scan(opts) {
   opts = opts || {}
@@ -32,7 +33,7 @@ var scan = module.exports = function scan(opts) {
 }
 
 scan.prototype.file = function(pattern, cb) {
-  var self = this
+  var self = clone(this)
   glob(pattern, {
     cwd: self.root
   }, function(err, files) {
