@@ -36,8 +36,10 @@ var scan = module.exports = function scan(opts) {
 
 scan.prototype.file = function(pattern, cb) {
   var self = clone(this)
+  var isDirSearch = (pattern.slice(-1) === '/')
   glob(pattern, {
-    cwd: self.root
+    cwd: self.root,
+    mark: true
   }, function(err, files) {
     // filenames containing wildcard char go to the bottom
     if (self.wildcard) {
@@ -53,6 +55,14 @@ scan.prototype.file = function(pattern, cb) {
     }
 
     files.forEach(function(file) {
+      if (isDirSearch) {
+        var isDir = (file.slice(-1) === '/')
+        if (!isDir) return
+        return cb({
+          name: '.',
+          dir: file.substring(0, file.length - 1)
+        })
+      }
       var filename = self.root + path.sep + file
       cb({
         name: file,
