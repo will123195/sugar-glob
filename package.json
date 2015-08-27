@@ -1,6 +1,6 @@
 {
   "name": "sugar-glob",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Sugar for using glob to find files ",
   "main": "index.js",
   "scripts": {
