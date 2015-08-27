@@ -15,7 +15,7 @@ var scan = module.exports = function scan(opts) {
 
   this.doneFn = function() {}
 
-  if (opts.root.substring(0, 1) === path.sep) {
+  if (path.resolve(opts.root) === opts.root) {
     // absolute path specified
     this.root = opts.root
   } else {
@@ -36,6 +36,7 @@ var scan = module.exports = function scan(opts) {
 
 scan.prototype.file = function(pattern, cb) {
   var self = clone(this)
+  self.cb = cb
   var isDirSearch = (pattern.slice(-1) === '/')
   glob(pattern, {
     cwd: self.root,
@@ -64,7 +65,7 @@ scan.prototype.file = function(pattern, cb) {
         })
       }
       var filename = self.root + path.sep + file
-      cb({
+      self.cb({
         name: file,
         dir: path.dirname(file),
         basename: path.basename(file),
