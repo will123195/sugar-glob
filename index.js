@@ -36,8 +36,7 @@ var scan = module.exports = function scan(opts) {
 
 scan.prototype.file = function(pattern, cb) {
   var self = clone(this)
-  self.cb = cb
-  var isDirSearch = (pattern.slice(-1) === '/')
+  var isDirSearch = (pattern.slice(-1) === path.sep)
   glob(pattern, {
     cwd: self.root,
     mark: true
@@ -47,6 +46,7 @@ scan.prototype.file = function(pattern, cb) {
       var filtered = []
       var unfiltered = []
       files.forEach(function(file) {
+        file = file.split('/').join(path.sep)
         if (file.indexOf(self.wildcard) > -1) {
           return filtered.push(file)
         }
@@ -57,7 +57,7 @@ scan.prototype.file = function(pattern, cb) {
 
     files.forEach(function(file) {
       if (isDirSearch) {
-        var isDir = (file.slice(-1) === '/')
+        var isDir = (file.slice(-1) === path.sep)
         if (!isDir) return
         return cb({
           name: '.',
@@ -65,7 +65,7 @@ scan.prototype.file = function(pattern, cb) {
         })
       }
       var filename = self.root + path.sep + file
-      self.cb({
+      cb({
         name: file,
         dir: path.dirname(file),
         basename: path.basename(file),
